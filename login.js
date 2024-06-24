@@ -1,51 +1,26 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 
-const TextInputCustom = ({ name, color, value, onChangeText, errorMessage }) => (
-  <>
-    <TextInput
-      placeholder={name}
-      style={[styles.customTextInput, { color: color, borderColor: errorMessage ? 'red' : 'gray' }]}
-      value={value}
-      onChangeText={onChangeText}
-    />
-    {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
-  </>
+const TextInputCustom = ({ name, color, value, onChangeText }) => (
+  <TextInput
+    placeholder={name}
+    style={[styles.customTextInput, { color: color }]}
+    value={value}
+    onChangeText={onChangeText}
+  />
 );
 
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isForgotPasswordVisible, setIsForgotPasswordVisible] = useState(false);
-  const [emailError, setEmailError] = useState('');
 
   const handleForgotPassword = () => {
     setIsForgotPasswordVisible(true);
   };
-
   const handleSendEmail = () => {
-    if (!validateEmail(email)) {
-      setEmailError('Not a valid email address. Should be your@email.com');
-    } else {
-      setEmailError('');
-  
-    }
   };
-
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const handleBackPress = () => {
-    setIsForgotPasswordVisible(false);
-    setEmailError('');
-    setEmail('');
-  };
-
-  const handleNavigateToSignUp = () => {
-
-    console.log("Navigate to Sign Up");
+  const handleBackPress = () => { 
   };
 
   return (
@@ -56,23 +31,14 @@ const App = () => {
             <Text style={styles.backButtonText}>&larr;</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Forgot Password</Text>
-          <Text style={styles.description}>
-            Please, enter your email address. You will receive a link to create a new password via email.
-          </Text>
-          <TextInputCustom
-            name="Email"
-            color="black"
-            value={email}
-            onChangeText={setEmail}
-            errorMessage={emailError}
-          />
+          <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
           <TouchableOpacity style={styles.button} onPress={handleSendEmail}>
             <Text style={styles.buttonText}>SEND</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
-          <TouchableOpacity style={styles.backButton} onPress={handleNavigateToSignUp}>
+          <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
             <Text style={styles.backButtonText}>&larr;</Text>
           </TouchableOpacity>
           <Text style={styles.title}>LOGIN</Text>
@@ -112,13 +78,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 25,
   },
   backButton: {
     position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 1,
+    top: 50,
+    left: 25,
   },
   backButtonText: {
     fontSize: 40,
@@ -128,27 +93,16 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    marginBottom: 60,
-  },
-  description: {
-    fontSize: 16,
-    color: 'black',
-    marginBottom: 20,
-    textAlign: 'center',
+    marginBottom: 80,
   },
   customTextInput: {
     height: 40,
     width: 300,
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 10,
     paddingLeft: 10,
-  },
-  errorText: {
-    fontSize: 15,
-    color: 'red',
-    alignSelf: 'flex-start',
-    marginBottom: 10,
   },
   forgotContainer: {
     alignSelf: 'flex-end',
@@ -157,13 +111,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   forgotText: {
-    fontSize: 15,
-    color: 'red',
+    fontSize: 14,
+    color: 'black',
     lineHeight: 15,
   },
   arrow: {
-    fontSize: 30,
-    color: 'red',
+    fontSize: 20,
+    color: 'black',
     lineHeight: 20,
   },
   button: {
@@ -172,20 +126,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
-    marginVertical: 10,
+    borderRadius: 30,
+    marginVertical: 15,
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 15,
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
   },
   loginText: {
     fontSize: 15,
-    color: 'blue',
+    color: 'black',
     marginTop: 100,
-    marginVertical: 10,
+    marginVertical: 15,
   },
   socialButtons: {
     flexDirection: 'row',
