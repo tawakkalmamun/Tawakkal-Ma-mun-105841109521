@@ -1,41 +1,55 @@
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image,} from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { useFonts } from 'expo-font';
 
-const CustomButton = ({color, text}) => (
-  <View style ={[styles.customButton, {backgroundColor: color}]}>
-    <Text style ={styles.customButtonText}>
-    {Text}
+const CustomButton = ({ color, text }) => (
+  <View style={[styles.customButton, { backgroundColor: color }]}>
+    <Text style={styles.customButtonText}>
+      {text}
     </Text>
-    </View>
+  </View>
 );
-const TextInputCustom = ({name, color, value, onChangeText}) => (
-<TextInput
-placeholder={`Masukkan ${name}`}
-style={[styles.customTextInput, {color: color}]}
-value={value}
-onChangeText={onChangeText}
-/>
 
-)
-const App = () => {
+const TextInputCustom = ({ name, color, value, onChangeText }) => (
+  <TextInput
+    placeholder={`Masukkan ${name}`}
+    style={[styles.customTextInput, { color: color }]}
+    value={value}
+    onChangeText={onChangeText}
+  />
+);
+
+export default function App() {
+  const [dapatFont] = useFonts({
+    'MetroBlack': require('./assets/fonts/Metropolis-Black.otf'),
+    'MetroBold': require('./assets/fonts/Metropolis-Bold.otf'),
+    'MetroLight': require('./assets/fonts/Metropolis-Light.otf'),
+    'MetroMedium': require('./assets/fonts/Metropolis-Medium.otf'),
+    'MetroSemiBold': require('./assets/fonts/Metropolis-SemiBold.otf'),
+  });
+
   const [username, setUsername] = useState('');
-  const [email, setemail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  return(
+  if (!dapatFont) {
+    return <Text>Font tidak ditemukan ...</Text>;
+  }
+
+  return (
     <View style={styles.container}>
       <Text style={styles.title}>SIGN UP</Text>
-      <TextInputCustom name="Name" color="black" value={username} onChangeText={setUsername}/>
-      <TextInputCustom name="Email" color="black" value={email} onChangeText={setemail}/>
-      <TextInputCustom name="Password" color="black" value={password} onChangeText={setPassword}/>
+      <TextInputCustom name="Name" color="black" value={username} onChangeText={setUsername} />
+      <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
+      <TextInputCustom name="Password" color="black" value={password} onChangeText={setPassword} />
       <View style={styles.accountContainer}>
-        <Text style={styles.accountText}> Already have an account?<Text style ={StyleSheet.arrow}>&rarr;</Text></Text>
+        <Text style={styles.accountText}>Already have an account? <Text style={styles.arrow}>&rarr;</Text></Text>
       </View>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>SING UP</Text>
-        </TouchableOpacity>
-    <Text style={styles.signupText}>Or Sing up with social account</Text>
-    <View style={styles.socialButtons}>
+        <Text style={styles.buttonText}>SIGN UP</Text>
+      </TouchableOpacity>
+      <Text style={styles.signupText}>Or Sign up with social account</Text>
+      <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
           <Image
             source={require('./assets/goggle.png')}
@@ -51,7 +65,7 @@ const App = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -62,10 +76,11 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     marginBottom: 60,
+    fontFamily:'MetroBold', // Ganti dengan nama font yang diinstal
   },
   customTextInput: {
     height: 50,
@@ -75,6 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 15,
     paddingLeft: 15,
+    fontFamily:'MetroLight', // Ganti dengan nama font yang diinstal
   },
   button: {
     width: 300,
@@ -90,6 +106,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontFamily:'MetroBold', // Ganti dengan nama font yang diinstal
   },
   accountContainer: {
     alignSelf: 'flex-end',
@@ -99,16 +116,19 @@ const styles = StyleSheet.create({
   accountText: {
     fontSize: 14,
     color: 'red',
+    fontFamily:'MetroMedium', // Ganti dengan nama font yang diinstal
   },
   arrow: {
     fontSize: 20,
     color: 'red',
+    fontFamily:'MetroMedium', // Ganti dengan nama font yang diinstal
   },
   signupText: {
     fontSize: 15,
     color: 'blue',
     marginTop: 100,
     marginVertical: 15,
+    fontFamily:'MetroLight', // Ganti dengan nama font yang diinstal
   },
   socialButtons: {
     flexDirection: 'row',
@@ -139,7 +159,6 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontFamily:'MetroSemiBold', // Ganti dengan nama font yang diinstal
   },
-});
-
-export default App;
+})

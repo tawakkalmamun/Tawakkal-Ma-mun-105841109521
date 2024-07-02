@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
+import { useFonts } from 'expo-font';
 
 const TextInputCustom = ({ name, color, value, onChangeText, errorMessage }) => (
   <>
@@ -14,6 +15,14 @@ const TextInputCustom = ({ name, color, value, onChangeText, errorMessage }) => 
 );
 
 const App = () => {
+  const [dapatFont] = useFonts({
+    'MetroBlack': require('./assets/fonts/Metropolis-Black.otf'),
+    'MetroBold': require('./assets/fonts/Metropolis-Bold.otf'),
+    'MetroLight': require('./assets/fonts/Metropolis-Light.otf'),
+    'MetroMedium': require('./assets/fonts/Metropolis-Medium.otf'),
+    'MetroSemiBold': require('./assets/fonts/Metropolis-SemiBold.otf'),
+  });
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isForgotPasswordVisible, setIsForgotPasswordVisible] = useState(false);
@@ -28,7 +37,6 @@ const App = () => {
       setEmailError('Not a valid email address. Should be your@email.com');
     } else {
       setEmailError('');
-  
     }
   };
 
@@ -44,19 +52,22 @@ const App = () => {
   };
 
   const handleNavigateToSignUp = () => {
-
     console.log("Navigate to Sign Up");
   };
+
+  if (!dapatFont) {
+    return <Text>Font tidak ditemukan ...</Text>;
+  }
 
   return (
     <View style={styles.container}>
       {isForgotPasswordVisible ? (
         <>
           <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-            <Text style={styles.backButtonText}>&larr;</Text>
+            <Text style={[styles.backButtonText, { fontFamily: 'MetroBold' }]}>&larr;</Text>
           </TouchableOpacity>
-          <Text style={styles.title}>Forgot Password</Text>
-          <Text style={styles.description}>
+          <Text style={[styles.title, { fontFamily: 'MetroBlack' }]}>Forgot Password</Text>
+          <Text style={[styles.description, { fontFamily: 'MetroLight' }]}>
             Please, enter your email address. You will receive a link to create a new password via email.
           </Text>
           <TextInputCustom
@@ -67,25 +78,25 @@ const App = () => {
             errorMessage={emailError}
           />
           <TouchableOpacity style={styles.button} onPress={handleSendEmail}>
-            <Text style={styles.buttonText}>SEND</Text>
+            <Text style={[styles.buttonText, { fontFamily: 'MetroMedium' }]}>SEND</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
           <TouchableOpacity style={styles.backButton} onPress={handleNavigateToSignUp}>
-            <Text style={styles.backButtonText}>&larr;</Text>
+            <Text style={[styles.backButtonText, { fontFamily: 'MetroBold' }]}>&larr;</Text>
           </TouchableOpacity>
-          <Text style={styles.title}>LOGIN</Text>
+          <Text style={[styles.title, { fontFamily: 'MetroBlack' }]}>LOGIN</Text>
           <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
           <TextInputCustom name="Password" color="red" value={password} onChangeText={setPassword} />
           <TouchableOpacity style={styles.forgotContainer} onPress={handleForgotPassword}>
-            <Text style={styles.forgotText}>Forgot your password?</Text>
-            <Text style={styles.arrow}>&rarr;</Text>
+            <Text style={[styles.forgotText, { fontFamily: 'MetroMedium' }]}>Forgot your password?</Text>
+            <Text style={[styles.arrow, { fontFamily: 'MetroMedium' }]}>&rarr;</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>LOGIN</Text>
+            <Text style={[styles.buttonText, { fontFamily: 'MetroBold' }]}>LOGIN</Text>
           </TouchableOpacity>
-          <Text style={styles.loginText}>Or login with social account</Text>
+          <Text style={[styles.loginText, { fontFamily: 'MetroLight' }]}>Or login with social account</Text>
           <View style={styles.socialButtons}>
             <TouchableOpacity style={styles.socialButton}>
               <Image

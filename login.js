@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
+import { useFonts } from 'expo-font';
 
 const TextInputCustom = ({ name, color, value, onChangeText }) => (
   <TextInput
@@ -11,6 +12,14 @@ const TextInputCustom = ({ name, color, value, onChangeText }) => (
 );
 
 const App = () => {
+  const [dapatFont] = useFonts({
+    'MetroBlack': require('./assets/fonts/Metropolis-Black.otf'),
+    'MetroBold': require('./assets/fonts/Metropolis-Bold.otf'),
+    'MetroLight': require('./assets/fonts/Metropolis-Light.otf'),
+    'MetroMedium': require('./assets/fonts/Metropolis-Medium.otf'),
+    'MetroSemiBold': require('./assets/fonts/Metropolis-SemiBold.otf'),
+  });
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isForgotPasswordVisible, setIsForgotPasswordVisible] = useState(false);
@@ -18,10 +27,16 @@ const App = () => {
   const handleForgotPassword = () => {
     setIsForgotPasswordVisible(true);
   };
-  const handleSendEmail = () => {
+  const handleSendEmail = () => { 
+    // Implementasi pengiriman email reset password
   };
   const handleBackPress = () => { 
+    setIsForgotPasswordVisible(false);
   };
+
+  if (!dapatFont) {
+    return <Text>Font tidak ditemukan ...</Text>;
+  }
 
   return (
     <View style={styles.container}>
@@ -70,7 +85,7 @@ const App = () => {
       )}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -88,12 +103,14 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 40,
     color: 'red',
+    fontFamily: 'MetroMedium',
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     marginBottom: 80,
+    fontFamily: 'MetroBlack',
   },
   customTextInput: {
     height: 40,
@@ -103,6 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
     paddingLeft: 10,
+    fontFamily: 'MetroLight',
   },
   forgotContainer: {
     alignSelf: 'flex-end',
@@ -114,11 +132,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'black',
     lineHeight: 15,
+    fontFamily: 'MetroMedium',
   },
   arrow: {
     fontSize: 20,
     color: 'black',
     lineHeight: 20,
+    fontFamily: 'MetroMedium',
   },
   button: {
     width: 300,
@@ -134,12 +154,14 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontFamily: 'MetroBold',
   },
   loginText: {
     fontSize: 15,
     color: 'black',
     marginTop: 100,
     marginVertical: 15,
+    fontFamily: 'MetroLight',
   },
   socialButtons: {
     flexDirection: 'row',
