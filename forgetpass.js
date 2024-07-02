@@ -64,10 +64,10 @@ const App = () => {
       {isForgotPasswordVisible ? (
         <>
           <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-            <Text style={[styles.backButtonText, { fontFamily: 'MetroBold' }]}>&larr;</Text>
+            <Text style={[styles.backButtonText, {fontFamily:'MetroBold'}]}>&larr;</Text>
           </TouchableOpacity>
-          <Text style={[styles.title, { fontFamily: 'MetroBlack' }]}>Forgot Password</Text>
-          <Text style={[styles.description, { fontFamily: 'MetroLight' }]}>
+          <Text style={[styles.title, { fontFamily: 'MetroMedium' }]}>Forgot Password</Text>
+          <Text style={[styles.description, {fontFamily:'MetroMedium'}]}>
             Please, enter your email address. You will receive a link to create a new password via email.
           </Text>
           <TextInputCustom
@@ -78,25 +78,25 @@ const App = () => {
             errorMessage={emailError}
           />
           <TouchableOpacity style={styles.button} onPress={handleSendEmail}>
-            <Text style={[styles.buttonText, { fontFamily: 'MetroMedium' }]}>SEND</Text>
+            <Text style={[styles.buttonText, {fontFamily:'MetroMedium'}]}>SEND</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
           <TouchableOpacity style={styles.backButton} onPress={handleNavigateToSignUp}>
-            <Text style={[styles.backButtonText, { fontFamily: 'MetroBold' }]}>&larr;</Text>
+            <Text style={[styles.backButtonText, {fontFamily:'MetroBold'}]}>&larr;</Text>
           </TouchableOpacity>
-          <Text style={[styles.title, { fontFamily: 'MetroBlack' }]}>LOGIN</Text>
+          <Text style={[styles.title, {fontFamily:'MetroBold'}]}>LOGIN</Text>
           <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
           <TextInputCustom name="Password" color="red" value={password} onChangeText={setPassword} />
           <TouchableOpacity style={styles.forgotContainer} onPress={handleForgotPassword}>
-            <Text style={[styles.forgotText, { fontFamily: 'MetroMedium' }]}>Forgot your password?</Text>
-            <Text style={[styles.arrow, { fontFamily: 'MetroMedium' }]}>&rarr;</Text>
+            <Text style={[styles.forgotText, {fontFamily:'MetroMedium'}]}>Forgot your password?</Text>
+            <Text style={[styles.arrow, {fontFamily:'MetroMedium'}]}>&rarr;</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text style={[styles.buttonText, { fontFamily: 'MetroBold' }]}>LOGIN</Text>
+            <Text style={[styles.buttonText, {fontFamily:'MetroBold'}]}>LOGIN</Text>
           </TouchableOpacity>
-          <Text style={[styles.loginText, { fontFamily: 'MetroLight' }]}>Or login with social account</Text>
+          <Text style={[styles.loginText, {fontFamily:'MetroMedium'}]}>Or login with social account</Text>
           <View style={styles.socialButtons}>
             <TouchableOpacity style={styles.socialButton}>
               <Image

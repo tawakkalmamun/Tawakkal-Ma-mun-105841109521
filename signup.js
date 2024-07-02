@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     marginBottom: 60,
-    fontFamily:'MetroBold', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroBold',
   },
   customTextInput: {
     height: 50,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 15,
     paddingLeft: 15,
-    fontFamily:'MetroLight', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroBold',
   },
   button: {
     width: 300,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontFamily:'MetroBold', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroBold',
   },
   accountContainer: {
     alignSelf: 'flex-end',
@@ -116,19 +116,19 @@ const styles = StyleSheet.create({
   accountText: {
     fontSize: 14,
     color: 'red',
-    fontFamily:'MetroMedium', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroMedium',
   },
   arrow: {
     fontSize: 20,
     color: 'red',
-    fontFamily:'MetroMedium', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroMedium', 
   },
   signupText: {
     fontSize: 15,
     color: 'blue',
     marginTop: 100,
     marginVertical: 15,
-    fontFamily:'MetroLight', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroMedium',
   },
   socialButtons: {
     flexDirection: 'row',
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontFamily:'MetroSemiBold', // Ganti dengan nama font yang diinstal
+    fontFamily:'MetroBold',
   },
 })
