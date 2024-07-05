@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomButton = ({ color, text }) => (
   <View style={[styles.customButton, { backgroundColor: color }]}>
@@ -20,6 +21,7 @@ const TextInputCustom = ({ name, color, value, onChangeText }) => (
 );
 
 export default function App() {
+
   const [dapatFont] = useFonts({
     'MetroBlack': require('./assets/fonts/Metropolis-Black.otf'),
     'MetroBold': require('./assets/fonts/Metropolis-Bold.otf'),
@@ -27,13 +29,16 @@ export default function App() {
     'MetroMedium': require('./assets/fonts/Metropolis-Medium.otf'),
     'MetroSemiBold': require('./assets/fonts/Metropolis-SemiBold.otf'),
   });
-
+  const navigation = useNavigation('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  if (!dapatFont) {
-    return <Text>Font tidak ditemukan ...</Text>;
+  if (!fontsLoaded) {
+    return Null;
+  }
+  const handlePress = () => {
+    navigation.navigate('LoginPage')
   }
 
   return (
@@ -43,7 +48,11 @@ export default function App() {
       <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
       <TextInputCustom name="Password" color="black" value={password} onChangeText={setPassword} />
       <View style={styles.accountContainer}>
-        <Text style={styles.accountText}>Already have an account? <Text style={styles.arrow}>&rarr;</Text></Text>
+        <TouchableOpacity onPress={handlePress}>
+          <Text style={styles.accountText}>
+            Already have an account? <Text style={styles.arrow}>&rarr;</Text>
+          </Text>
+      </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>SIGN UP</Text>
@@ -66,7 +75,7 @@ export default function App() {
     </View>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
