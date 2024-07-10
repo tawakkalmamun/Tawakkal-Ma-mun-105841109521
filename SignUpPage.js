@@ -34,8 +34,8 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  if (!fontsLoaded) {
-    return Null;
+  if (!dapatFont) {
+    return <Text>Font tidak ditemukan ...</Text>;
   }
   const handlePress = () => {
     navigation.navigate('LoginPage')

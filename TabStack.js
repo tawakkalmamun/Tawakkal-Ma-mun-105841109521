@@ -2,15 +2,12 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpPage from './SignUpPage';
 import LoginPage from './LoginPage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeAktif from './assets/HomeAktif.png';
-import HomeNonAktif from './assets/HomeNonAktif.png';
-import ShopAktif from './assets/ShopAktif.png';
-import ShopNonAktif from './assets/ShopNonAktif.png';
-import ShapeAktif from './assets/ShapeAktif.png'
-import ShapeNonAktif from './assets/ShapeNonAktif.png'
+import HomeAktif from './HomeAktif.png';
+import HomeInaktif from './homeNonAktif.png';
+import Shop from './ShopAktif.png'
+import ShopInaktif from './ShopeNonAktif.png'
 
 const Tab = createBottomTabNavigator();
 function MyTabs() {
@@ -22,19 +19,7 @@ function MyTabs() {
         options={{
           headerShown: false, tabBarIcon: ({ focused }) => (
             <Image
-              source={focused ? HomeAktif : HomeNonAktif}
-              style={{ width: 40, height: 40 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="SignUp"
-        component={SignUpPage}
-        options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <Image
-              source={focused ? ShopAktif : ShopNonAktif}
+              source={focused ? HomeAktif : HomeInaktif}
               style={{ width: 40, height: 40 }}
             />
           ),
@@ -46,7 +31,7 @@ function MyTabs() {
         options={{
           headerShown: false, tabBarIcon: ({ focused }) => (
             <Image
-              source={focused ? ShapeAktif : ShapeNonAktif}
+              source={focused ? Shop : ShopNonAktif}
               style={{ width: 40, height: 40 }}
             />
           ),
